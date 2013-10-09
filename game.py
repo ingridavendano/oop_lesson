@@ -189,14 +189,14 @@ def keyboard_handler():
         if existing_el is None or not existing_el.SOLID:
             GAME_BOARD.del_el(CURRENT_PLAYER.x, CURRENT_PLAYER.y)
             GAME_BOARD.set_el(next_x, next_y, CURRENT_PLAYER)
-        if len(CURRENT_PLAYER.inventory) >= 5:
-            print "Congratulations, %s! You just won because you retrieved 5 items!" %CURRENT_PLAYER
-            # time.sleep function creates a pause in the game before it "ends/exits" the
-            # game and the window of the game
-            ###### HOWEVER ######
-            # the game does not show that the last gem gets picked up before it ends the game
-            time.sleep(5)
-            sys.exit(0)
+        # if CURRENT_PLAYER.inventory) >= 5:
+        #     print "Congratulations, %s! You just won because you retrieved 5 items!" %CURRENT_PLAYER
+        #     # time.sleep function creates a pause in the game before it "ends/exits" the
+        #     # game and the window of the game
+        #     ###### HOWEVER ######
+        #     # the game does not show that the last gem gets picked up before it ends the game
+        #     time.sleep(5)
+        #     sys.exit(0)
 
 # if a the 1 or 2 key is hit then it will switch which player 
 # is allowed to move as the current player
