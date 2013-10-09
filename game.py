@@ -25,7 +25,7 @@ class Wall(GameElement):
     SOLID = True
 
 class Fake_Wall(Wall):
-    SOLID = False
+    SOLID = True
 
 ####
 
