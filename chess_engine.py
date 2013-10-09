@@ -4,7 +4,7 @@ import pyglet
 from pyglet.window import key
 from core import GameElement
 
-SCREEN_X = 1850
+SCREEN_X = 1100
 SCREEN_Y = 1000
 
 game_window = pyglet.window.Window(SCREEN_X, SCREEN_Y)
@@ -29,6 +29,8 @@ def setup_images():
             "TallTree": "Tree Tall.png",
             "Rock": "Rock.png",
             "Chest": "Chest Closed.png",
+            "DoorClosed": "Door Tall Closed.png",
+            "DoorOpen": "Door Tall Open.png",
             "BlueGem": "Gem Blue.png",
             "GreenGem": "Gem Green.png",
             "OrangeGem": "Gem Orange.png",
@@ -46,18 +48,7 @@ def setup_images():
             "SE_Roof": "Roof South East.png",
             "SW_Roof": "Roof South West.png",
             "W_Roof": "Roof West.png",
-            "E_Roof": "Roof East.png",
-            "Window": "Window Tall.png",
-            "DoorClosed": "Door Tall Closed.png",
-            "DoorOpen": "Door Tall Open.png",
-            "TallWall": "Wall Block Tall.png",
-            "RampWest": "Ramp West.png",
-            "Dirt": "Dirt Block.png",
-            "Wood": "Wood Block.png",
-            "TallStoneBlock": "Stone Block Tall.png",
-            "StoneBlock": "Stone Block.png",
-            "BrownBlock": "Brown Block.png",
-            "EnemyBug": "Enemy Bug.png"
+            "E_Roof": "Roof East.png"
             }
 
     for k,v in filenames.items():
@@ -91,10 +82,8 @@ class Board(object):
             if i == 0 or i == height-1:
                 # On the boundaries
                 game_map.append(["Block"] * width)
-                # game_map.append(["TallStoneBlock"] * width)
             else:
                 row = ["Block"] + (["GrassBlock"] * inner_width) + ["Block"]
-                # row = ["BrownBlock"] + (["GrassBlock"] * inner_width) + ["BrownBlock"]
                 game_map.append(row)
         
         self.base_board = game_map
@@ -135,7 +124,7 @@ class Board(object):
         # x_pos and y_pos in board coordinates
         # Active layer is 1/4 sprite width above bg layer
         x_px = x_pos * sprite.width
-        y_px = SCREEN_Y - (y_pos * sprite.height/2) + (sprite.height/4)
+        y_px = SCREEN_Y - (y_pos * sprite.height /2) + (sprite.height/4)
 
         sprite.set_position(
                 x_px + self.offset_x,
@@ -188,7 +177,6 @@ class Board(object):
 
 class Obstacle(GameElement):
     pass
-
 
 def update(dt):
     for el in update_list:
