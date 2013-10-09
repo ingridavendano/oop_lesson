@@ -149,12 +149,14 @@ class Character(GameElement):
 class Gem(GameElement):
     IMAGE = "OrangeGem"
     SOLID = False
+    def __init__(self, pos):
+        self.fakewall = pos
 
     def interact(self, player):
         player.inventory.append(self)
-        # new_wall = Wall()
-        # GAME_BOARD.register(new_wall)
-        # GAME_BOARD.set_el(4,4, new_wall)
+        new_wall = Fake_Wall()
+        GAME_BOARD.register(new_wall)
+        GAME_BOARD.del_el(self.fakewall[0],self.fakewall[1])
         GAME_BOARD.draw_msg("You just acquired a gem! You have %d items!" %(len(player.inventory)))
 
 
@@ -261,24 +263,26 @@ def initialize():
         GAME_BOARD.set_el(pos[0],pos[1], fake_wall)
         fake_walls.append(fake_wall)
 
-    # fake_wall_positions = [
-    #     (3,1),
-    #     (13,1),
-    #     (10,2),
-    #     (7,3),
-    #     (14,3),
-    #     (1,5),
-    #     (11,6),
-    #     (12,7),
-    #     (7,8)
-    # ]
+    fake_walls_positions = [
+        (13,1),
+        (7,8),
+        (10,2),
+        (7,3),
+        (1,5),
+        (14,3),
+        (11,6),
+        (12,7),
+        (3,1)
+    ]
     
+    count = 0
     # places the gems tokens down on map
     for pos in gem_positions:
-        gem = Gem()
+        gem = Gem(fake_walls_positions[count])
         GAME_BOARD.register(gem)
         GAME_BOARD.set_el(pos[0],pos[1], gem)
         gems.append(gem)
+        count +=1
 
 
     global PLAYER1
