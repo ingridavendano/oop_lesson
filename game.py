@@ -264,12 +264,12 @@ def initialize():
         fake_walls.append(fake_wall)
 
     fake_walls_positions = [
-        (13,1),
+        (14,3),
         (7,8),
         (10,2),
         (7,3),
         (1,5),
-        (14,3),
+        (13,1),
         (12,7),
         (11,6),
         (3,1)
